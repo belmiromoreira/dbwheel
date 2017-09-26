@@ -38,6 +38,7 @@ from sqlalchemy.ext.declarative import declarative_base
 KILO_VERSION = 286
 LIBERTY_VERSION = 302
 MITAKA_VERSION = 319
+NEWTON_VERSION = 334
 
 class DB_query:
     def __init__(self, db_url):
@@ -89,7 +90,7 @@ class DB_dump:
             print ("[ERROR][%s] Cannot download DB - %s" % (datetime.datetime.now(), self.name_source))
             sys.exit(1)
         else:
-            stat = os.stat('db.sql')
+            stat = os.stat('/mnt/db.sql')
             print ("[INFO][%s] DB file size: %d MB" % (datetime.datetime.now(), (stat.st_size / 1048576)))
 
     def upload(self):
@@ -229,7 +230,7 @@ def main():
                           target_endpoint['password'],
                           target_endpoint['password_admin'],
                           target_endpoint['database'],
-                          'db.sql'
+                          '/mnt/db.sql'
                          )
 
         db_dump.drop()
